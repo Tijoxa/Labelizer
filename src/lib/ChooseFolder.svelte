@@ -1,10 +1,17 @@
-<script>
+<script lang="ts">
+	import { invoke } from '@tauri-apps/api/tauri';
+
 	let folderChosen = false;
 
-	function chooseFolder() {
-		// Here, you would typically open a directory chooser.
-		// For the sake of this example, we'll just simulate it.
-		folderChosen = true;
+	async function chooseFolder() {
+		try {
+			const response = (await invoke('choose_folder')) as { success: boolean };
+			if (response.success) {
+				folderChosen = true;
+			}
+		} catch (error) {
+			console.error('Error choosing folder:', error);
+		}
 	}
 </script>
 
