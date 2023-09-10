@@ -20,8 +20,9 @@
 	<p>Choose a directory to get started</p>
 	<button on:click={chooseFolder}>Choose Folder</button>
 
+	<!-- make it work -->
 	{#if folderChosen}
-		<button>Next</button>
+		<button>Go!</button>
 	{/if}
 </div>
 

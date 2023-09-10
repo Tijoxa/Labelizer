@@ -14,8 +14,7 @@ fn choose_folder() -> bool {
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet])
-        .invoke_handler(tauri::generate_handler![choose_folder])
+        .invoke_handler(tauri::generate_handler![greet, choose_folder])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

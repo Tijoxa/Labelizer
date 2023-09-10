@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ChooseFolder from '$lib/ChooseFolder.svelte';
+	import Greet from '$lib/Greet.svelte';
 </script>
 
-<ChooseFolder />
+<Greet />
