@@ -3,12 +3,11 @@
 
 	let folderChosen = false;
 
+	// make it work
 	async function chooseFolder() {
 		try {
 			const response = (await invoke('choose_folder')) as { success: boolean };
-			if (response.success) {
-				folderChosen = true;
-			}
+			folderChosen = response.success;
 		} catch (error) {
 			console.error('Error choosing folder:', error);
 		}
@@ -20,7 +19,6 @@
 	<p>Choose a directory to get started</p>
 	<button on:click={chooseFolder}>Choose Folder</button>
 
-	<!-- make it work -->
 	{#if folderChosen}
 		<button>Go!</button>
 	{/if}

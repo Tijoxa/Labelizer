@@ -9,7 +9,8 @@ fn greet(name: &str) -> String {
 
 #[tauri::command]
 fn choose_folder() -> bool {
-    layout()
+    true
+    // layout()
 }
 
 fn main() {
