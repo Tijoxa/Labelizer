@@ -3,11 +3,9 @@
 
 	let folderChosen = false;
 
-	// make it work
 	async function chooseFolder() {
 		try {
-			const response = (await invoke('choose_folder')) as { success: boolean };
-			folderChosen = response.success;
+			folderChosen = await invoke('choose_folder');
 		} catch (error) {
 			console.error('Error choosing folder:', error);
 		}
