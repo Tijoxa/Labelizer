@@ -1,32 +1,24 @@
 <script lang="ts">
-	import { invoke } from '@tauri-apps/api/tauri';
 	import { goto } from '$app/navigation';
-
-	let name = '';
-	let greetMsg = '';
-
-	async function greet() {
-		greetMsg = await invoke('greet', { name });
-	}
-
-	function handleKeydown(event: KeyboardEvent) {
-		if (event.key === 'Enter') {
-			greet();
-		}
-	}
 </script>
 
-<div>
-	<input
-		id="greet-input"
-		placeholder="Enter a name..."
-		bind:value={name}
-		on:keydown={handleKeydown}
-	/>
-	<button on:click={greet}>Greet</button>
-	<p>{greetMsg}</p>
-
-	{#if greetMsg != ''}
-		<button on:click={() => goto('/home')}>Next</button>
-	{/if}
+<div class="page">
+	<h1>Welcome</h1>
+	<button on:click={() => goto('/home')}>Go to home</button>
 </div>
+
+<style>
+	.page {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100vh;
+		font-family: Arial, sans-serif;
+	}
+
+	button {
+		margin-top: 20px;
+		padding: 10px 20px;
+	}
+</style>

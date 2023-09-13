@@ -1,29 +1,31 @@
 <script lang="ts">
 	import { invoke } from '@tauri-apps/api/tauri';
-
-	let folderChosen = false;
+	import { goto } from '$app/navigation';
+	import { imagePathStore } from './imageStore';
 
 	async function chooseFolder() {
 		try {
-			folderChosen = await invoke('choose_folder');
+			const response = (await invoke('choose_folder')) as string;
+			if (response) {
+				imagePathStore.set(response);
+			}
 		} catch (error) {
 			console.error('Error choosing folder:', error);
 		}
 	}
 </script>
 
-<div class="container">
-	<h1>Welcome</h1>
-	<p>Choose a directory to get started</p>
+<div class="choose_folder">
+	<h2>Choose a directory to get started</h2>
 	<button on:click={chooseFolder}>Choose Folder</button>
 
-	{#if folderChosen}
-		<button>Go!</button>
+	{#if imagePathStore}
+		<button on:click={() => goto('/display')}>Next</button>
 	{/if}
 </div>
 
 <style>
-	.container {
+	.choose_folder {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
