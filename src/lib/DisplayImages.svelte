@@ -1,14 +1,17 @@
 <script lang="ts">
-	import { invoke } from '@tauri-apps/api/tauri';
-	import { imagePathStore } from './imageStore';
+	import { imagePathsStore } from './imageStore';
 
-	$: if ($imagePathStore) {
-		console.log('Stored Image Path:', $imagePathStore);
+	$: if ($imagePathsStore) {
+		console.log('Stored Image Path:', $imagePathsStore);
+	}
+
+	function pathToFileURL(path: string) {
+		return `file://${path}`;
 	}
 </script>
 
 <div class="display">
-	{#if $imagePathStore}
-		<src={$imagePathStore} alt="Selected image" />
-	{/if}
+	{#each $imagePathsStore || [] as path (path)}
+		<src={pathToFileURL(path)} alt="Image from folder" />
+	{/each}
 </div>

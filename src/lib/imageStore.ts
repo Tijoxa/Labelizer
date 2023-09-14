@@ -1,3 +1,3 @@
 import { writable } from 'svelte/store';
 
-export const imagePathStore = writable<string | null>(null);
+export const imagePathsStore = writable<string[] | null>(null);

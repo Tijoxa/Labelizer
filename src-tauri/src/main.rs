@@ -8,7 +8,7 @@ fn greet(name: &str) -> String {
 }
 
 #[tauri::command]
-fn choose_folder() -> String {
+fn choose_folder() -> Vec<String> {
     _choose_folder().unwrap()
 }
 
