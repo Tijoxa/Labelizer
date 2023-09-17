@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { imagePathsStore } from './imageStore';
+	import { imagePaths } from './dataStore';
 
-	$: if ($imagePathsStore) {
-		console.log('Stored Image Path:', $imagePathsStore);
+	$: if ($imagePaths) {
+		console.log('Stored Image Path:', $imagePaths);
 	}
 
 	function pathToFileURL(path: string) {
@@ -13,7 +13,7 @@
 <!-- TODO: give file_path to backend, render image and send this with canva to draw on, and switch next previous with arrow key -->
 
 <div class="display">
-	{#each $imagePathsStore || [] as path (path)}
+	{#each $imagePaths || [] as path (path)}
 		<p1>{pathToFileURL(path)}</p1>
 		<!-- <img src={pathToFileURL(path)} alt="From folder" /> -->
 	{/each}
